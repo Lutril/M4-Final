@@ -1,0 +1,67 @@
+class RavenHorde {
+
+  float interval = 3000;
+  float lastInterval;
+  ArrayList<Raven> ravenhorde;
+  PVector trackpos;
+  float birdSpeed = 4;
+  int score = 0;
+
+  RavenHorde(PVector trackpos) {
+    this.trackpos = trackpos;
+    ravenhorde = new ArrayList<Raven>();
+    lastInterval = millis() + interval;
+  }
+
+
+  void update(Ball b) {
+
+    if (lastInterval < millis()) {
+
+      addRaven();
+
+      lastInterval = millis() + interval;
+
+      if (interval>300) {
+        interval -=100;
+        birdSpeed += 0.2;
+      }
+    }
+
+    updateRaven(b);
+  }
+
+  void display() {
+    displayRaven();
+  }
+
+
+
+  void updateRaven(Ball b) {
+    //update particles
+    for (int i = ravenhorde.size()-1; i >= 0; i--) {
+      Raven p = ravenhorde.get(i);
+      p.update(b);
+      if (p.point) {
+        score+=1;
+        p.point = false;
+      }
+      if (p.dead) {
+        ravenhorde.remove(i);
+      }
+    }
+  }
+
+
+
+  void displayRaven() {
+    for (int i = 0; i < ravenhorde.size(); i++) {
+      Raven p = ravenhorde.get(i);
+      p.display();
+    }
+  }
+
+  void addRaven() {
+    ravenhorde.add(new Raven(new PVector(width+100, random(0, height)), trackpos, birdSpeed));
+  }
+}
