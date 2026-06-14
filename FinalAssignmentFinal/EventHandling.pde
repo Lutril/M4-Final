@@ -6,26 +6,40 @@ void keyPressed() {
   } else if (key == 'b') {
     ball.reset(wizardPos);
   }
-}
-
-void keyReleased() {
-  if (key == 'c') {
-    Anthony.noteDownXY2(mouseX, mouseY);
-    Anthony.birdnado();
+  if (Anthony.dead && (key == 'q' || key == 'Q')) {
+    resetGame();
   }
 }
 
-void mouseMoved() {
-  Anthony.noteDownXY2(mouseX, mouseY);
-}
+  void keyReleased() {
+    if (key == 'c') {
+      Anthony.noteDownXY2(mouseX, mouseY);
+      Anthony.birdnado();
+    }
+  }
 
-void mousePressed() {
-  ball.mousePressedEvent(new PVector(mouseX, mouseY));
-}
+  void mouseMoved() {
+    Anthony.noteDownXY2(mouseX, mouseY);
+  }
 
-void mouseDragged() {
-  ball.mouseDraggedEvent(new PVector(mouseX, mouseY));
-}
-void mouseReleased() {
-  ball.mouseReleasedEvent();
-}
+  void mousePressed() {
+    ball.mousePressedEvent(new PVector(mouseX, mouseY));
+  }
+
+  void mouseDragged() {
+    ball.mouseDraggedEvent(new PVector(mouseX, mouseY));
+  }
+  void mouseReleased() {
+    ball.mouseReleasedEvent();
+  }
+
+
+  void resetGame() {
+    Anthony.dead = false;
+    
+    ball.reset(wizardPos);
+    ravenhorde.ravenhorde.clear();
+    ravenhorde.birdSpeed = 4;
+    ravenhorde.interval = 3000;
+    ravenhorde.score = 0;
+  }

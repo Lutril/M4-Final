@@ -4,7 +4,8 @@ class RavenHorde {
   float lastInterval;
   ArrayList<Raven> ravenhorde;
   PVector trackpos;
-  float birdSpeed = 1;
+  float birdSpeed = 4;
+  int score = 0;
 
   RavenHorde(PVector trackpos) {
     this.trackpos = trackpos;
@@ -23,7 +24,7 @@ class RavenHorde {
 
       if (interval>300) {
         interval -=100;
-        birdSpeed += 0.0005;
+        birdSpeed += 0.2;
       }
     }
 
@@ -40,8 +41,11 @@ class RavenHorde {
     //update particles
     for (int i = ravenhorde.size()-1; i >= 0; i--) {
       Raven p = ravenhorde.get(i);
-      p.update(b, w);
-
+      p.update(b);
+      if (p.point) {
+        score+=1;
+        p.point = false;
+      }
       if (p.dead) {
         ravenhorde.remove(i);
       }

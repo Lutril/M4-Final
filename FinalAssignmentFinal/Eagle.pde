@@ -35,7 +35,7 @@ class Eagle {
     float theta = velocity.heading2D() + radians(90);
     //stroke(#0F0F0F);
     //strokeWeight(1);
-    fill(#DEDEDE);
+    fill(#FAFAFA);
     pushMatrix();
     translate(position.x, position.y);
     if (theta > -HALF_PI && theta < HALF_PI) {
@@ -46,17 +46,17 @@ class Eagle {
     }
 
     //body
+    fill(#DEDEDE);
     ellipse(0, 0, 50, 30);
     ellipse(-25, -10, 20, 20);
 
-    //beak
-    triangle(-25, -15, -25, -5, -50, -10);
+
 
     //eye
     fill(#0F0F0F); //white
-    ellipse(-27, -10, 7, 7);
+    ellipse(-27, -10, 4, 4);
     fill(#DEDEDE);
-    ellipse(-28, -10, 4, 4);
+
     //triangle(-33, -10, -20, -15, -25, -20);
 
     //tail

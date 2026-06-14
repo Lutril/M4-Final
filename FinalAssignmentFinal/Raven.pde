@@ -9,6 +9,9 @@ class Raven {
   boolean dying;
   boolean flying = true;
   float birdSpeed;
+  boolean point;
+  
+  int hp = 10;
 
   Raven(PVector position, PVector trackPos, float birdSpeed) {
 
@@ -22,6 +25,8 @@ class Raven {
     if ((flying && isHit(b.location, b.radius)) || (flying && checkEagleHits(w))) {
       dying = true;
       flying = false;
+      point = true;
+    
 
       death = new Death(position);
     }

@@ -39,7 +39,7 @@ class EagleFlock {
       }
     }
   }
-
+  
   void encircle(PVector pos, float radius) {
     for (Eagle e : flock) {
       e.toggleCircle();

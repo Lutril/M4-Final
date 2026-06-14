@@ -1,23 +1,29 @@
 class Wizard {
+  
   EagleFlock flock;
+  RavenHorde horde;
   float x, y;
   float size;
   color c;
   float birdnadoX1, birdnadoX2, birdnadoY1, birdnadoY2, birdnadoRadius;
   boolean casting = false;
   color birdnadoColor = color(#358ae9);
+  float hitBox = 50;
+  boolean dead = false;
 
 
-  Wizard(float x, float y, float size, color c, int startingsize) {
+  Wizard(float x, float y, float size, color c, int startingsize, RavenHorde horde) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.c = c;
     flock = new EagleFlock(x, y, startingsize, size/2);
+    this.horde = horde;
   }
 
   void run() {
     flock.run();
+    isHit();
     display();
   }
 
@@ -70,7 +76,8 @@ class Wizard {
   void noteDownXY2(float x, float y) {
     birdnadoX2 = x;
     birdnadoY2 = y;
-    birdnadoRadius = dist(birdnadoX1, birdnadoY1, birdnadoX2, birdnadoY2);;
+    birdnadoRadius = dist(birdnadoX1, birdnadoY1, birdnadoX2, birdnadoY2);
+    ;
   }
 
   void resetBirdnado() {
@@ -79,5 +86,20 @@ class Wizard {
     birdnadoX2 = 0;
     birdnadoY2 = 0;
     birdnadoRadius = 0;
+  }
+
+  boolean isHit() {
+    
+    for (int i = 0; i < horde.ravenhorde.size(); i++) {     
+      Raven r = horde.ravenhorde.get(i);
+      
+      PVector position = new PVector(x, y);
+      
+      if (PVector.dist(position, r.position) < hitBox + r.hitbox) {
+        dead = true;
+        return true; 
+      }
+    }
+    return false;
   }
 }
