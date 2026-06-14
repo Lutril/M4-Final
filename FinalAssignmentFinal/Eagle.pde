@@ -90,7 +90,7 @@ class Eagle {                    //the eagle
       group.mult(2.6);
       sep.mult(1.7);
       ali.mult(1.2);
-      coh.mult(1.8);
+      coh.mult(1.5);
       applyForce(group);
     } else if (circling) {
       PVector enc = encircle();
@@ -209,18 +209,18 @@ class Eagle {                    //the eagle
   // For the average position (i.e. center) of all nearby eagles, calculate steering vector towards that position
   PVector cohesion (ArrayList<Eagle> eagles) {
     float neighbordist = 50;
-    PVector sum = new PVector(0, 0);   // Start with empty vector to accumulate all positions
+    PVector sum = new PVector(0, 0);
     int count = 0;
     for (Eagle other : eagles) {
       float d = PVector.dist(position, other.position);
       if ((d > 0) && (d < neighbordist)) {
-        sum.add(other.position); // Add position
+        sum.add(other.position);
         count++;
       }
     }
     if (count > 0) {
       sum.div(count);
-      return seek(sum);  // Steer towards the position
+      return seek(sum);
     } else {
       return new PVector(0, 0);
     }
@@ -229,7 +229,6 @@ class Eagle {                    //the eagle
   PVector encircle() {
     PVector steer = new PVector(circleCenter.x -position.x, circleCenter.y - position.y);
     PVector tangent = new PVector(-steer.y, steer.x);
-    steer.mult(0.8);
     steer.add(tangent);
     steer.normalize();
     steer.mult(maxSpeed);

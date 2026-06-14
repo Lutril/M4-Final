@@ -1,14 +1,28 @@
 /*
 Anthony, Aerial Arsonist
-
-By Samuel Hawryluk and Jelle Brinkman
-
-A simple game where you're a wizard controllinga flock of birds and a fireball
-
-Take down ravens to up your score, try to make it as high as possible
-
-Goodluck
-*/
+ 
+ By Samuel Hawryluk and Jelle Brinkman
+ 
+ A simple game where you're a wizard controllinga flock of birds and a fireball
+ 
+ Take down ravens to up your score, try to make it as high as possible
+ 
+ Goodluck
+ 
+ 
+ -----
+ DISCLAIMER
+ ----
+ 
+ Some of the parts of the code have been based on existing sources:
+ 
+ Eagle - Originated from Shiffman's version, has been significantly modified;
+ The main unchanged parts are the logic of seperate, align, cohesion.
+ Other than new functions have been added and rest is modified.
+ 
+ 
+ 
+ */
 
 
 
@@ -20,11 +34,13 @@ Landscape landscapeFar;
 Landscape landscapeMiddle;
 Landscape landscapeClose;
 Landscape water;
-PVector wizardPos = new PVector(200, 880);
+PVector wizardPos;
+float textSizer;
 
 void setup() {
-  fullScreen();                            //creating objects
+  fullScreen();                        //creating objects
   hatColor = color(#ad2bfb);
+  wizardPos = new PVector(width*1/6, height*3/4);
 
   ball = new Ball(wizardPos); //Starting position of the ball
   ravenhorde = new RavenHorde(wizardPos);
@@ -33,6 +49,7 @@ void setup() {
   landscapeMiddle = new Landscape(170, 0.01, 2, height/2.5, color(#869893));
   landscapeClose = new Landscape(140, 0.01, 3.5, height/1.5, color(#5C7961));
   water = new Landscape(50, 0.01, 3.5, height-100, color(#1F91FF));
+  textSizer = (width+height/2) / 40;
 }
 
 void draw() {                            //all the real time running
@@ -43,7 +60,7 @@ void draw() {                            //all the real time running
     displayGameOverScreen();
   } else {
 
-    landscapeFar.update();                                    
+    landscapeFar.update();
     landscapeFar.display();
     landscapeMiddle.update();
     landscapeMiddle.display();
@@ -80,13 +97,14 @@ void displayGameOverScreen() {                   //couple functions for the end 
 }
 
 void displayText() {
-
+  textAlign(CORNER,CORNER);
+  textSizer = (width+height/2) / 40;
   fill(#FF3B3B); // Red
-  textSize(64);
-  text("Score: " + ravenhorde.score, 100, 70);
+  textSize(textSizer*2);
+  text("Score: " + ravenhorde.score, textSizer, textSizer*2);
   fill(#050505); // Red
-  textSize(32);
-  text("Press B to reset fireball", 150, 120);
-  text("Press R to recall/release", 150, 160);
-  text("Press and hold C to cast Birdnado", 150, 200);
+  textSize(textSizer);
+  text("Press B to reset fireball", textSizer, textSizer*4);
+  text("Press R to recall/release", textSizer, textSizer*5);
+  text("Press and hold C to cast Birdnado", textSizer, textSizer*6);
 }
