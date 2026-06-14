@@ -1,4 +1,18 @@
-Wizard Anthony;
+/*
+Anthony, Aerial Arsonist
+
+By Samuel Hawryluk and Jelle Brinkman
+
+A simple game where you're a wizard controllinga flock of birds and a fireball
+
+Take down ravens to up your score, try to make it as high as possible
+
+Goodluck
+*/
+
+
+
+Wizard Anthony;                      //Globals
 color hatColor;
 Ball ball;
 RavenHorde ravenhorde;
@@ -9,19 +23,19 @@ Landscape water;
 PVector wizardPos = new PVector(200, 880);
 
 void setup() {
-  fullScreen();
+  fullScreen();                            //creating objects
   hatColor = color(#ad2bfb);
 
   ball = new Ball(wizardPos); //Starting position of the ball
   ravenhorde = new RavenHorde(wizardPos);
-  Anthony = new Wizard(wizardPos.x, wizardPos.y, 50, hatColor, 50, ravenhorde);
+  Anthony = new Wizard(wizardPos.x, wizardPos.y, 50, hatColor, 10, ravenhorde);
   landscapeFar = new Landscape(200, 0.005, 0.5, height/4, color(#ADC9D1));
   landscapeMiddle = new Landscape(170, 0.01, 2, height/2.5, color(#869893));
   landscapeClose = new Landscape(140, 0.01, 3.5, height/1.5, color(#5C7961));
   water = new Landscape(50, 0.01, 3.5, height-100, color(#1F91FF));
 }
 
-void draw() {
+void draw() {                            //all the real time running
 
   background(#7CE1FF);
 
@@ -29,7 +43,7 @@ void draw() {
     displayGameOverScreen();
   } else {
 
-    landscapeFar.update();
+    landscapeFar.update();                                    
     landscapeFar.display();
     landscapeMiddle.update();
     landscapeMiddle.display();
@@ -41,13 +55,13 @@ void draw() {
     Anthony.run();
     ball.update();
     ball.display();
-    ravenhorde.update(ball);
+    ravenhorde.update(ball, Anthony);
     ravenhorde.display();
     displayText();
   }
 }
 
-void displayGameOverScreen() {
+void displayGameOverScreen() {                   //couple functions for the end screen and score
 
   fill(0, 0, 0, 150);
   rect(0, 0, width, height);
@@ -73,6 +87,6 @@ void displayText() {
   fill(#050505); // Red
   textSize(32);
   text("Press B to reset fireball", 150, 120);
-  text("Press R to reset recall", 150, 160);
+  text("Press R to recall/release", 150, 160);
   text("Press and hold C to cast Birdnado", 150, 200);
 }

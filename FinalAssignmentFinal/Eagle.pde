@@ -1,4 +1,4 @@
-class Eagle {
+class Eagle {                    //the eagle 
   PVector position;
   PVector velocity;
   PVector acceleration;
@@ -33,8 +33,6 @@ class Eagle {
 
   void render() {
     float theta = velocity.heading2D() + radians(90);
-    //stroke(#0F0F0F);
-    //strokeWeight(1);
     fill(#FAFAFA);
     pushMatrix();
     translate(position.x, position.y);
@@ -56,8 +54,6 @@ class Eagle {
     fill(#0F0F0F); //white
     ellipse(-27, -10, 4, 4);
     fill(#DEDEDE);
-
-    //triangle(-33, -10, -20, -15, -25, -20);
 
     //tail
     triangle(15, -12, 10, 5, 40, 5);
@@ -84,7 +80,7 @@ class Eagle {
   }
 
 
-  void flock(ArrayList<Eagle> eagles) {
+  void flock(ArrayList<Eagle> eagles) {                 //controls the behavior of eagles depending on states
     PVector sep = separate(eagles);   // Separation
     PVector ali = align(eagles);      // Alignment
     PVector coh = cohesion(eagles);   // Cohesion
@@ -149,13 +145,12 @@ class Eagle {
     }
   }
 
-  // Separation
-  // Method checks for nearby boids and steers away
+  // Method checks for nearby eagles and steers away
   PVector separate (ArrayList<Eagle> eagles) {
     float desiredseparation = 60.0f;
     PVector steer = new PVector(0, 0, 0);
     int count = 0;
-    // For every boid in the system, check if it's too close
+    // For every eagle in the system, check if it's too close
     for (Eagle other : eagles) {
       float d = PVector.dist(position, other.position);
       // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
@@ -187,7 +182,7 @@ class Eagle {
   }
 
   // Alignment
-  // For every nearby boid in the system, calculate the average velocity
+  // For every nearby eagle in the system, calculate the average velocity
   PVector align (ArrayList<Eagle> eagles) {
     float neighbordist = 50;
     PVector sum = new PVector(0, 0);
@@ -211,8 +206,7 @@ class Eagle {
     }
   }
 
-  // Cohesion
-  // For the average position (i.e. center) of all nearby boids, calculate steering vector towards that position
+  // For the average position (i.e. center) of all nearby eagles, calculate steering vector towards that position
   PVector cohesion (ArrayList<Eagle> eagles) {
     float neighbordist = 50;
     PVector sum = new PVector(0, 0);   // Start with empty vector to accumulate all positions
@@ -244,7 +238,7 @@ class Eagle {
     return steer;
   }
 
-  void toggleGroup() {
+  void toggleGroup() {           //toggle functions for spells
     grouped = !grouped;
     circling = false;
   }
@@ -254,6 +248,7 @@ class Eagle {
   }
 
   void toggleCircle() {
-    circling = !circling;
+    circling = true;
+    grouped = false;
   }
 }

@@ -1,5 +1,5 @@
 
-class Ball {
+class Ball {                      //fireball
   
   //Code structure provided
   PVector location;

@@ -1,4 +1,4 @@
-class Particle {
+class Particle {                    //particles for fireball and ravens
 
   PVector pos, vel, grav;
   PVector acceleration;

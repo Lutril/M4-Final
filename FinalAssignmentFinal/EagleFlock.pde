@@ -1,4 +1,4 @@
-class EagleFlock {
+class EagleFlock {                //eagle system
   ArrayList<Eagle> flock = new ArrayList<Eagle>();
   float startingSpread = 50;
   int lastTimeEagleAdded= 0;
@@ -22,7 +22,7 @@ class EagleFlock {
     updateTime();
   }
 
-  void groupUp(PVector pos) {
+  void groupUp(PVector pos) {            //enable grouping at target location
     for (Eagle e : flock) {
       e.toggleGroup();
       if (e.grouped) {
@@ -31,7 +31,7 @@ class EagleFlock {
     }
   }
 
-  void flyAway(PVector pos) {
+  void flyAway(PVector pos) {             //enable avoiding target location
     for (Eagle e : flock) {
       e.toggleAvoid();
       if (e.avoiding) {
@@ -40,7 +40,7 @@ class EagleFlock {
     }
   }
   
-  void encircle(PVector pos, float radius) {
+  void encircle(PVector pos, float radius) {         //encircle in certain radius
     for (Eagle e : flock) {
       e.toggleCircle();
       if (e.circling) {
@@ -57,7 +57,7 @@ class EagleFlock {
     flock.add(new Eagle(pos, vel, acc, size));
   }
   
-  void updateTime() {
+  void updateTime() {              //add eagles every X milliseconds
     if (millis() - lastTimeEagleAdded >= timeToAddEagle) {
       addEagle(x,y,size);
       lastTimeEagleAdded = millis();

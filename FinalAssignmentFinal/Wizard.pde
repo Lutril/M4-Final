@@ -1,4 +1,4 @@
-class Wizard {
+class Wizard {               //the wizard controlling eagles and casting fireballs and spells
   
   EagleFlock flock;
   RavenHorde horde;

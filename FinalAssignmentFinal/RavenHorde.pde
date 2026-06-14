@@ -1,4 +1,4 @@
-class RavenHorde {
+class RavenHorde {             //raven system
 
   float interval = 3000;
   float lastInterval;
@@ -41,7 +41,7 @@ class RavenHorde {
     //update particles
     for (int i = ravenhorde.size()-1; i >= 0; i--) {
       Raven p = ravenhorde.get(i);
-      p.update(b);
+      p.update(b, w);
       if (p.point) {
         score+=1;
         p.point = false;

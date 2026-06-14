@@ -1,4 +1,4 @@
-class Raven {
+class Raven {              //the ravens (enemy birds)
 
   Death death;
   PVector position;

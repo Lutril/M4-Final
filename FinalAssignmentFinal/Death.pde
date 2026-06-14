@@ -1,4 +1,4 @@
-class Death {
+class Death {                //death animation of ravens || particle system for death
 
   Particle[] particles;
   PVector[] positions;

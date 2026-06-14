@@ -1,5 +1,4 @@
-
-class Landscape {
+class Landscape {           //mountain range in the background
 
   float xoff = 0.0;
 
@@ -16,8 +15,8 @@ class Landscape {
     this.mountainHeight = mountainHeight;
     this.mountainColor = mountainColor;
   }
-  
-  
+
+
   void update() {
     xoff += mountainSpeed;
   }
